@@ -1,0 +1,42 @@
+additional_user_node_pools = []
+cluster_name               = "akseusdemo001dev01"
+dns_prefix                 = "aksdnseusdemo001dev01"
+dns_service_ip             = null
+kubernetes_version         = "1.33"
+location                   = "eastus-demo"
+network_plugin             = null
+network_plugin_mode        = null
+network_policy             = null
+nsg_name                   = "aksnsgeusdemo001dev01"
+private_cluster            = true
+resource_group_name        = "rgeusdemo001dev01"
+service_cidr               = null
+sku_tier                   = "Standard"
+system_node_pool = {
+  "default_nodes" = 1
+  "max_nodes"     = 3
+  "min_nodes"     = 1
+  "name"          = "system"
+  "profile"       = "S"
+  "vm_size"       = "Standard_D4s_v5"
+}
+system_subnet_cidr = "198.18.1.0/24"
+system_subnet_name = "snet-aks-system"
+tags = {
+  "application_code" = "demo001"
+  "environment"      = "dev"
+  "execution_id"     = "terraform-aks-d001-aks01"
+  "managed_by"       = "terraform-infrastructure-agent"
+}
+user_node_pool = {
+  "default_nodes" = 1
+  "max_nodes"     = 2
+  "min_nodes"     = 1
+  "name"          = "user"
+  "profile"       = "M"
+  "vm_size"       = "Standard_D8s_v5"
+}
+user_subnet_cidr    = "198.18.2.0/24"
+user_subnet_name    = "snet-aks-user"
+vnet_address_spaces = ["198.18.0.0/16"]
+vnet_name           = "vneteusdemo001dev01"

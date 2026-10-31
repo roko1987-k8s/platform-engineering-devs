@@ -1,0 +1,73 @@
+{
+  "application_code": "demo001",
+  "approval": {
+    "kind": "synthetic-local-test"
+  },
+  "artifacts": [
+    "main.tf",
+    "versions.tf",
+    "providers.tf",
+    "resource-group.tf",
+    "networking.tf",
+    "nsg.tf",
+    "aks.tf",
+    "nodepools.tf",
+    "variables.tf",
+    "outputs.tf",
+    "terraform.tfvars",
+    "manifest.yaml"
+  ],
+  "catalog_commit": "a380aab6c2d2d0e2f5bce02f9c43d7e5d0bc7c3c",
+  "catalog_path": "azure/dev/aks.yaml",
+  "catalog_repository": "platform-engineering-vars-tfc",
+  "cloud_provider": "azure",
+  "cloud_target_status": "PENDING_TARGET_AUTHORIZATION",
+  "cluster": {
+    "private_cluster": true,
+    "sku_tier": "Standard"
+  },
+  "deployment_name": "aks-01",
+  "environment": "dev",
+  "execution_id": "terraform-aks-d001-aks01",
+  "generation_status": "GENERATED",
+  "identity": {
+    "application_code": "demo001",
+    "kind": "synthetic-local-test",
+    "reference": "4431af7012ec86b4a038ecbe28dda2058d12983929537c9ff14c4c8156d72e13",
+    "workspace_code": "D001"
+  },
+  "kubernetes_version": "1.33",
+  "network": {
+    "allocation_source": "explicit-synthetic-lab-input",
+    "approval_reference": null,
+    "cidr_source": "networking_team",
+    "logical_segments": {
+      "system": "snet-aks-system",
+      "user": "snet-aks-user"
+    },
+    "mode": "new",
+    "status": "SYNTHETIC_TEST"
+  },
+  "node_pools": {
+    "additional_user_profiles": [],
+    "system": {
+      "default_nodes": 1,
+      "max_nodes": 3,
+      "min_nodes": 1,
+      "profile": "S",
+      "vm_size": "Standard_D4s_v5"
+    },
+    "user": {
+      "default_nodes": 1,
+      "max_nodes": 2,
+      "min_nodes": 1,
+      "profile": "M",
+      "vm_size": "Standard_D8s_v5"
+    }
+  },
+  "provider_region": "eastus-demo",
+  "schema_version": 1,
+  "validation_status": "FMT_PASSED",
+  "workspace": "workspaces/D001/terraform/azure/dev/aks-01",
+  "workspace_code": "D001"
+}
