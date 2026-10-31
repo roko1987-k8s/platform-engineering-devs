@@ -1,0 +1,8 @@
+{
+  "application_code": "demo001",
+  "authorization_kind": "synthetic-local-test",
+  "cloud_provider": "azure",
+  "deployment_name": "aks-01",
+  "environment": "dev",
+  "workspace_code": "D001"
+}
