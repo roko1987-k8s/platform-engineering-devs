@@ -1,0 +1,11 @@
+{
+  "workspace_code": "P001",
+  "application_code": "adp-eks",
+  "cloud_provider": "aws",
+  "environment": "dev",
+  "deployment_name": "eks-01",
+  "cloud_target_id": null,
+  "authorization_kind": "self-service-draft-authorized",
+  "proposal_mode": "DESIGN_WITHOUT_AWS_ACCOUNT",
+  "administrative_policy_reference": null
+}

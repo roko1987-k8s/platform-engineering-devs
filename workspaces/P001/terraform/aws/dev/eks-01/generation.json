@@ -1,0 +1,39 @@
+{
+  "status": "DRAFT_BLOCKED",
+  "networking": "pending",
+  "moduleSha": "c6c682d4718eb6d59b0ff8a4a1284940f2adabf2",
+  "catalogPath": "aws/dev/eks.yaml",
+  "catalogSha256": "bd96ec38c9cee68e608a21cb75427c6f1fc2b26deac099fcb7bb1f23bc6fd760",
+  "namingSha256": "876783d2e856aab6bc783ea68a79cc208c158228a8f5daac7d84d325c4f80f33",
+  "context": {
+    "teamId": "P001",
+    "environment": "dev",
+    "sequence": 1,
+    "moduleSha": "c6c682d4718eb6d59b0ff8a4a1284940f2adabf2"
+  },
+  "selection": {
+    "system": {
+      "size": "S",
+      "minimum": 1,
+      "desired": 1,
+      "maximum": 2
+    },
+    "user": {
+      "size": "M",
+      "minimum": 1,
+      "desired": 1,
+      "maximum": 2
+    }
+  },
+  "design": {
+    "proposal_mode": "DESIGN_WITHOUT_AWS_ACCOUNT",
+    "aws_account_id": null,
+    "deployment_authorized": false,
+    "pending": [
+      "AWS_ACCOUNT_ID",
+      "IAM",
+      "NETWORKING",
+      "INFRASTRUCTURE_APPROVAL"
+    ]
+  }
+}
