@@ -1,3 +1,4 @@
+
 terraform {
   required_version = ">= 1.10.0, < 2.0.0"
 
@@ -7,6 +8,13 @@ terraform {
       version = "= 6.20.0"
     }
   }
+}
+
+variable "aws_account_id" {
+  description = "Cuenta AWS autorizada para el aprovisionamiento"
+  type        = string
+  sensitive   = true
+  nullable    = false
 }
 
 provider "aws" {
@@ -32,17 +40,20 @@ module "eks" {
       desired = 1
       maximum = 2
     }
+
     user = {
       minimum = 1
       desired = 1
       maximum = 2
     }
   }
+
+  # Modo diseño: no habilita aprovisionamiento AWS.
   proposal_mode = "DESIGN_WITHOUT_AWS_ACCOUNT"
 
   reviewed_execution = {
-    # Aquí van los demás campos obligatorios
-    # definidos en variables.tf del módulo central.
+    # El valor proviene del entorno, no de GitHub.
+    aws_account_id = var.aws_account_id
 
     networking = {
       vpc_cidr = "10.100.0.0/16"
