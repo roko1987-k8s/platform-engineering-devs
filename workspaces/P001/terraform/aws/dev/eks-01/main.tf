@@ -58,7 +58,8 @@ module "eks" {
 
   # Se mantiene en modo diseño.
   # NETWORKING_ONLY se habilitará cuando corresponda.
-  proposal_mode = "DESIGN_WITHOUT_AWS_ACCOUNT"
+  # proposal_mode = "DESIGN_WITHOUT_AWS_ACCOUNT"
+  proposal_mode = "NETWORKING_ONLY"
 
   reviewed_execution = {
     # Nunca almacenar el Account ID real en GitHub.
