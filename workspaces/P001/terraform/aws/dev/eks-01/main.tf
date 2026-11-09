@@ -10,11 +10,17 @@ terraform {
   }
 }
 
+# AWS Account ID recibido desde Terraform Agent.
+# Origen: .env -> TF_VAR_aws_account_id
 variable "aws_account_id" {
   description = "Cuenta AWS autorizada para el aprovisionamiento"
   type        = string
-  sensitive   = true
   nullable    = false
+
+  validation {
+    condition     = can(regex("^[0-9]{12}$", var.aws_account_id))
+    error_message = "aws_account_id debe contener exactamente 12 dígitos."
+  }
 }
 
 provider "aws" {
@@ -24,6 +30,7 @@ provider "aws" {
 module "eks" {
   source = "git::https://github.com/roko1987-k8s/platform-engineering-modules-tfc.git//aws/dev/eks?ref=main"
 
+  # Identidad y configuración
   team_id            = "P001"
   application_code   = "adp-eks"
   environment        = "dev"
@@ -31,6 +38,7 @@ module "eks" {
   sequence           = 1
   kubernetes_version = "1.35"
 
+  # Catálogo de capacidad
   system_size = "M"
   user_size   = "M"
 
@@ -48,11 +56,12 @@ module "eks" {
     }
   }
 
-  # Modo diseño: no habilita aprovisionamiento AWS.
+  # Se mantiene en modo diseño.
+  # NETWORKING_ONLY se habilitará cuando corresponda.
   proposal_mode = "DESIGN_WITHOUT_AWS_ACCOUNT"
 
   reviewed_execution = {
-    # El valor proviene del entorno, no de GitHub.
+    # Nunca almacenar el Account ID real en GitHub.
     aws_account_id = var.aws_account_id
 
     networking = {
