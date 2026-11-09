@@ -56,11 +56,9 @@ module "eks" {
     }
   }
 
-  # Se mantiene en modo diseño.
-  # NETWORKING_ONLY se habilitará cuando corresponda.
-  # proposal_mode = "DESIGN_WITHOUT_AWS_ACCOUNT"
+  # Fase 1: aprovisionamiento exclusivo de Networking.
   proposal_mode = "NETWORKING_ONLY"
-
+  
   reviewed_execution = {
     # Nunca almacenar el Account ID real en GitHub.
     aws_account_id = var.aws_account_id
@@ -76,6 +74,10 @@ module "eks" {
       node_subnet_cidrs = [
         "10.100.10.0/24",
         "10.100.11.0/24"
+      ]
+
+      public_subnet_cidrs = [
+        "10.100.20.0/24"
       ]
 
       approval_reference = "LAB-P001-001"
