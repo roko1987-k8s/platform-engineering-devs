@@ -38,24 +38,27 @@ module "eks" {
       maximum = 2
     }
   }
-
   proposal_mode = "DESIGN_WITHOUT_AWS_ACCOUNT"
+
+  reviewed_execution = {
+    # Aquí van los demás campos obligatorios
+    # definidos en variables.tf del módulo central.
+
+    networking = {
+      vpc_cidr = "10.100.0.0/16"
+
+      cluster_subnet_cidrs = [
+        "10.100.0.0/24",
+        "10.100.1.0/24"
+      ]
+
+      node_subnet_cidrs = [
+        "10.100.10.0/24",
+        "10.100.11.0/24"
+      ]
+
+      approval_reference = "LAB-P001-001"
+      connectivity       = null
+    }
+  }
 }
-
-networking = {
-  vpc_cidr = "10.100.0.0/16"
-
-  cluster_subnet_cidrs = [
-    "10.100.0.0/24",
-    "10.100.1.0/24"
-  ]
-
-  node_subnet_cidrs = [
-    "10.100.10.0/24",
-    "10.100.11.0/24"
-  ]
-
-  approval_reference = "LAB-P001-001"
-  connectivity       = null
-}
-
