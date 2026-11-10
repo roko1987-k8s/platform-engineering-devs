@@ -58,7 +58,7 @@ module "eks" {
 
   # Fase 2: Networking + EKS Cluster + Managed Node Groups.
   proposal_mode = "EKS_CLUSTER"
-  
+
   reviewed_execution = {
     # Nunca almacenar el Account ID real en GitHub.
     aws_account_id = var.aws_account_id
@@ -82,11 +82,8 @@ module "eks" {
 
       approval_reference = "LAB-P001-001"
       # Verificación post-Apply: Redes atestigua routing, private API, DNS y ECR/S3/STS/EKS sobre la VPC creada.
-      connectivity       = null
+      connectivity = null
     }
-
-    # Nombre canónico de la instancia (names.eks) para roles IAM y security groups.
-    resource_prefix = "eksue1p001dev01"
 
     # Laboratorio: ciclo crear/validar/destruir; sin esto el Destroy sería rechazado por EKS.
     deletion_protection = false
