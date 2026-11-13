@@ -84,5 +84,3 @@ module "eks" {
     deletion_protection = false
   }
 }
-
-}
