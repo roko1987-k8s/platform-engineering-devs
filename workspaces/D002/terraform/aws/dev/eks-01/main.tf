@@ -9,6 +9,19 @@ terraform {
   }
 }
 
+# AWS Account ID recibido desde Terraform Agent.
+# Origen: .env -> TF_VAR_aws_account_id
+variable "aws_account_id" {
+  description = "Cuenta AWS autorizada para el aprovisionamiento"
+  type        = string
+  nullable    = false
+
+  validation {
+    condition     = can(regex("^[0-9]{12}$", var.aws_account_id))
+    error_message = "aws_account_id debe contener exactamente 12 dígitos."
+  }
+}
+
 provider "aws" {
   region = "us-east-1"
 }
