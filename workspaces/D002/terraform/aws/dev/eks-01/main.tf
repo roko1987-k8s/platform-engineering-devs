@@ -52,5 +52,37 @@ module "eks" {
     }
   }
 
-  proposal_mode = "DESIGN_WITHOUT_AWS_ACCOUNT"
+  proposal_mode = "EKS_CLUSTER"
+
+  reviewed_execution = {
+    # Nunca almacenar el Account ID real en GitHub.
+    aws_account_id = var.aws_account_id
+
+    networking = {
+      vpc_cidr = "10.100.0.0/16"
+
+      cluster_subnet_cidrs = [
+        "10.100.0.0/24",
+        "10.100.1.0/24"
+      ]
+
+      node_subnet_cidrs = [
+        "10.100.10.0/24",
+        "10.100.11.0/24"
+      ]
+
+      public_subnet_cidrs = [
+        "10.100.20.0/24"
+      ]
+
+      approval_reference = "LAB-D002-001"
+      # Verificación post-Apply: Redes atestigua routing, private API, DNS y ECR/S3/STS/EKS sobre la VPC creada.
+      connectivity = null
+    }
+
+    # Laboratorio: ciclo crear/validar/destruir; sin esto el Destroy sería rechazado por EKS.
+    deletion_protection = false
+  }
+}
+
 }
