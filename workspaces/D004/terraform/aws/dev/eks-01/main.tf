@@ -22,6 +22,20 @@ variable "aws_account_id" {
   }
 }
 
+# Networking asignado por la plataforma (GP02, registro central).
+# Origen: Terraform Agent -> TF_VAR_network; nunca se escribe a mano.
+variable "network" {
+  description = "Segmento de red del workspace asignado automáticamente"
+  type = object({
+    vpc_cidr             = string
+    cluster_subnet_cidrs = list(string)
+    node_subnet_cidrs    = list(string)
+    public_subnet_cidrs  = list(string)
+    approval_reference   = string
+  })
+  nullable = false
+}
+
 provider "aws" {
   region = "us-east-1"
 }
@@ -59,10 +73,8 @@ module "eks" {
     # Nunca almacenar el Account ID real en GitHub.
     aws_account_id = var.aws_account_id
 
-    # Networking: completar en un PR revisado con los CIDR aprobados
-    # (vpc_cidr, cluster/node/public subnet CIDRs y approval_reference).
-    # Mientras sea null, el Plan se detiene en GATE_NETWORKING_PENDING.
-    networking = null
+    # Segmento asignado por GP02 (orden ascendente, uno por workspace).
+    networking = var.network
 
     # Laboratorio: ciclo crear/validar/destruir; sin esto el Destroy sería rechazado por EKS.
     deletion_protection = false
