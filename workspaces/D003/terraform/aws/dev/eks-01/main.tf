@@ -62,7 +62,27 @@ module "eks" {
     # Networking: completar en un PR revisado con los CIDR aprobados
     # (vpc_cidr, cluster/node/public subnet CIDRs y approval_reference).
     # Mientras sea null, el Plan se detiene en GATE_NETWORKING_PENDING.
-    networking = null
+    networking = {
+      vpc_cidr = "10.100.0.0/16"
+
+      cluster_subnet_cidrs = [
+        "10.100.0.0/24",
+        "10.100.1.0/24"
+      ]
+
+      node_subnet_cidrs = [
+        "10.100.10.0/24",
+        "10.100.11.0/24"
+      ]
+
+      public_subnet_cidrs = [
+        "10.100.20.0/24"
+      ]
+
+      approval_reference = "LAB-P001-001"
+      # Verificación post-Apply: Redes atestigua routing, private API, DNS y ECR/S3/STS/EKS sobre la VPC creada.
+      connectivity = null
+    }
 
     # Laboratorio: ciclo crear/validar/destruir; sin esto el Destroy sería rechazado por EKS.
     deletion_protection = false
